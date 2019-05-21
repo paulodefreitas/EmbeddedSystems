@@ -35,3 +35,7 @@ Example 1
 - Breadboard
 - USB cable
 - IDE Arduino 1.8.9
+
+## References
+
+[1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
