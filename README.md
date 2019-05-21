@@ -27,3 +27,11 @@ Example 1
 ## Video - Example 1
 
 [![Watch the video](https://img.youtube.com/vi/ZSkYLrklfog/maxresdefault.jpg)](https://youtu.be/ZSkYLrklfog)
+
+## Requirements for led blinks
+- Arduino Uno R3
+- Resistor 330 ohms
+- 2 x Jumpers
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
