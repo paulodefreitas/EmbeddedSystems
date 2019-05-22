@@ -69,7 +69,7 @@ Example 2
 </pre>
 ## Video - Example 2
 
-[![Watch the video](https://img.youtube.com/vi/51ukQ1h5KwI/maxresdefault.jpg)](https://youtu.be/51ukQ1h5KwI)
+[![Watch the video](https://img.youtube.com/vi/ZSkYLrklfog/maxresdefault.jpg)](https://youtu.be/51ukQ1h5KwI)
 
 
 
