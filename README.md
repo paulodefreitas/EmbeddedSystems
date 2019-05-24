@@ -86,9 +86,7 @@ Another thing to notice with this setup is that we have made a button which turn
 - IDE Arduino 1.8.9
 
 ## Four LEDs
-In this code, we have a new procedure to display the binary number we want to show. Numbers in the programming language are actually stored in binary even when we set their values using denary. We can take advantage of that fact to avoid having to write code to do the conversion (although we could). In this code, a for loop is used to read the values of the first four bits of the number sent to the procedure. The bitRead function tells us whether there is a 1 or 0 at a given place value. If we find a 1, we turn that LED on, if we find a zero, we turn the LED for that position off.
-
-Test this code with all of the different numbers from 0 to 15. You can also put in values up to 255. Numbers in this range need 8 place value columns to be represented. Since our code ignores the last 4 place values, the LEDs will only be on if that number has a 1 in one or more of the first 4 place value columns. All odd numbers will have the first place value lit up, all even numbers will mean it is not lit.
+Example 3
 
 ## Code - Example 3
 
@@ -128,7 +126,9 @@ Test this code with all of the different numbers from 0 to 15. You can also put 
 - IDE Arduino 1.8.9
 
 ## Representing Binary Numbers
-Example 4
+In this code, we have a new procedure to display the binary number we want to show. Numbers in the programming language are actually stored in binary even when we set their values using denary. We can take advantage of that fact to avoid having to write code to do the conversion (although we could). In this code, a for loop is used to read the values of the first four bits of the number sent to the procedure. The bitRead function tells us whether there is a 1 or 0 at a given place value. If we find a 1, we turn that LED on, if we find a zero, we turn the LED for that position off.
+
+Test this code with all of the different numbers from 0 to 15. You can also put in values up to 255. Numbers in this range need 8 place value columns to be represented. Since our code ignores the last 4 place values, the LEDs will only be on if that number has a 1 in one or more of the first 4 place value columns. All odd numbers will have the first place value lit up, all even numbers will mean it is not lit.
 
 ## Code - Example 4
 
