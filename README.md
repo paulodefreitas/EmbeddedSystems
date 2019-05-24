@@ -184,6 +184,76 @@ Test this code with all of the different numbers from 0 to 15. You can also put 
 - USB cable
 - IDE Arduino 1.8.9
 
+## Traffic light
+Traffic light
+
+## Code - Example 5
+
+<pre>
+<font color="#434f54">&#47;&#47; variables</font>
+<font color="#00979c">int</font> <font color="#000000">GREEN</font> <font color="#434f54">=</font> <font color="#000000">2</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">YELLOW</font> <font color="#434f54">=</font> <font color="#000000">3</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">RED</font> <font color="#434f54">=</font> <font color="#000000">4</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">DELAY_GREEN</font> <font color="#434f54">=</font> <font color="#000000">5000</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">DELAY_YELLOW</font> <font color="#434f54">=</font> <font color="#000000">2000</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">DELAY_RED</font> <font color="#434f54">=</font> <font color="#000000">5000</font><font color="#000000">;</font>
+
+
+<font color="#434f54">&#47;&#47; basic functions</font>
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">GREEN</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">YELLOW</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">RED</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#000000">green_light</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">DELAY_GREEN</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">yellow_light</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">DELAY_YELLOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">red_light</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">DELAY_RED</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">green_light</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">GREEN</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">YELLOW</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">RED</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">yellow_light</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">GREEN</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">YELLOW</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">RED</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">red_light</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">GREEN</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">YELLOW</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">RED</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 5
+
+[![Watch the video](https://img.youtube.com/vi/-RUi5HXznco/maxresdefault.jpg)](https://youtu.be/-RUi5HXznco)
+
+## Requirements for Traffic light
+
+- Arduino Uno R3
+- 3 X Resistor 330 ohms
+- 4 x Jumpers
+- 3 x LEDs
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
