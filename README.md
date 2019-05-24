@@ -37,7 +37,11 @@ Example 1
 - IDE Arduino 1.8.9
 
 ## button & LED
-Example 2
+Here is the code you will need for the basic control of this circuit, when you upload this program to the Arduino, you will notice that the LED starts on. When you press the button, the LED should switch off. The double equals (==) in the IF statement is not a mistake - it is the operator for comparison in most languages from the C family..
+
+You may also have noticed that the value we read from the pushbutton, HIGH or LOW is the value we are writing to the LED pin. The following code achieves the same effect without requiring the use of the IF statement.
+
+Another thing to notice with this setup is that we have made a button which turns the light off when we press it. This means that the circuit is complete until we press the button. In other words, we can say that the button is push-to-break.
 
 ## Code - Example 2
 
