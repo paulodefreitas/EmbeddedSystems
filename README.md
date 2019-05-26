@@ -315,6 +315,111 @@ This project is a simple way of using the Arduino to simulate the behaviour of l
 - IDE Arduino 1.8.9
 - 10 Jumpers
 
+## Playing A Tune
+C4 is middle C. The large number of lines at the beginning of the code define the frequencies of different notes. n_C4 is middle C - you have a few octaves either side of that to play with. The song is defined in 3 variables. The first is an array of the notes. That is matched with the beats for each note. The numbers you use depend on the tune you play and the mixture of note lengths it has. You also have a variable defining the length of the tune.
+
+## Code - Example 7
+
+<pre>
+<font color="#434f54">&#47;&#47; constants for notes - C4 is middle C.</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_C3</font> <font color="#434f54">=</font> <font color="#000000">131</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_CS3</font> <font color="#434f54">=</font> <font color="#000000">139</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_D3</font> <font color="#434f54">=</font> <font color="#000000">147</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_DS3</font> <font color="#434f54">=</font> <font color="#000000">156</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_E3</font> <font color="#434f54">=</font> <font color="#000000">165</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_F3</font> <font color="#434f54">=</font> <font color="#000000">175</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_FS3</font> <font color="#434f54">=</font> <font color="#000000">185</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_G3</font> <font color="#434f54">=</font> <font color="#000000">196</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_GS3</font> <font color="#434f54">=</font> <font color="#000000">208</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_A3</font> <font color="#434f54">=</font> <font color="#000000">220</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_AS3</font> <font color="#434f54">=</font> <font color="#000000">233</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_B3</font> <font color="#434f54">=</font> <font color="#000000">247</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_C4</font> <font color="#434f54">=</font> <font color="#000000">262</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_CS4</font> <font color="#434f54">=</font> <font color="#000000">277</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_D4</font> <font color="#434f54">=</font> <font color="#000000">294</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_DS4</font> <font color="#434f54">=</font> <font color="#000000">311</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_E4</font> <font color="#434f54">=</font> <font color="#000000">330</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_F4</font> <font color="#434f54">=</font> <font color="#000000">349</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_FS4</font> <font color="#434f54">=</font> <font color="#000000">370</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_G4</font> <font color="#434f54">=</font> <font color="#000000">392</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_GS4</font> <font color="#434f54">=</font> <font color="#000000">415</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_A4</font> <font color="#434f54">=</font> <font color="#000000">440</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_AS4</font> <font color="#434f54">=</font> <font color="#000000">466</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_B4</font> <font color="#434f54">=</font> <font color="#000000">494</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_C5</font> <font color="#434f54">=</font> <font color="#000000">523</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_CS5</font> <font color="#434f54">=</font> <font color="#000000">554</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_D5</font> <font color="#434f54">=</font> <font color="#000000">587</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_DS5</font> <font color="#434f54">=</font> <font color="#000000">622</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_E5</font> <font color="#434f54">=</font> <font color="#000000">659</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_F5</font> <font color="#434f54">=</font> <font color="#000000">698</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_FS5</font> <font color="#434f54">=</font> <font color="#000000">740</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_G5</font> <font color="#434f54">=</font> <font color="#000000">784</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_GS5</font> <font color="#434f54">=</font> <font color="#000000">831</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_A5</font> <font color="#434f54">=</font> <font color="#000000">880</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_AS5</font> <font color="#434f54">=</font> <font color="#000000">932</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_B5</font> <font color="#434f54">=</font> <font color="#000000">988</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_C6</font> <font color="#434f54">=</font> <font color="#000000">1047</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_CS6</font> <font color="#434f54">=</font> <font color="#000000">1109</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_D6</font> <font color="#434f54">=</font> <font color="#000000">1175</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_DS6</font> <font color="#434f54">=</font> <font color="#000000">1245</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_E6</font> <font color="#434f54">=</font> <font color="#000000">1319</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_F6</font> <font color="#434f54">=</font> <font color="#000000">1397</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_FS6</font> <font color="#434f54">=</font> <font color="#000000">1480</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_G6</font> <font color="#434f54">=</font> <font color="#000000">1568</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_GS6</font> <font color="#434f54">=</font> <font color="#000000">1661</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_A6</font> <font color="#434f54">=</font> <font color="#000000">1760</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_AS6</font> <font color="#434f54">=</font> <font color="#000000">1865</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">n_B6</font> <font color="#434f54">=</font> <font color="#000000">1976</font><font color="#000000">;</font>
+
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">rest</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">buzzerPin</font> <font color="#434f54">=</font> <font color="#000000">9</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">tempo</font> <font color="#434f54">=</font> <font color="#000000">150</font><font color="#000000">;</font>
+
+
+
+<font color="#00979c">int</font> <font color="#000000">tune</font><font color="#000000">[</font><font color="#000000">]</font> <font color="#434f54">=</font> <font color="#000000">{</font><font color="#000000">n_C4</font><font color="#434f54">,</font> <font color="#000000">n_C4</font><font color="#434f54">,</font> <font color="#000000">n_G4</font><font color="#434f54">,</font> <font color="#000000">n_G4</font><font color="#434f54">,</font> <font color="#000000">n_A4</font><font color="#434f54">,</font> <font color="#000000">n_A4</font><font color="#434f54">,</font> <font color="#000000">n_G4</font><font color="#434f54">,</font> <font color="#000000">n_F4</font><font color="#434f54">,</font> <font color="#000000">n_F4</font><font color="#434f54">,</font> <font color="#000000">n_E4</font><font color="#434f54">,</font> <font color="#000000">n_E4</font><font color="#434f54">,</font> <font color="#000000">n_D4</font><font color="#434f54">,</font> <font color="#000000">n_D4</font><font color="#434f54">,</font> <font color="#000000">n_C4</font><font color="#000000">}</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">beats</font><font color="#000000">[</font><font color="#000000">]</font> <font color="#434f54">=</font> <font color="#000000">{</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">2</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#434f54">,</font> <font color="#000000">2</font> <font color="#000000">}</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">tunelength</font> <font color="#434f54">=</font> <font color="#000000">14</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">i</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">i</font> <font color="#434f54">&lt;</font> <font color="#000000">tunelength</font><font color="#000000">;</font> <font color="#000000">i</font><font color="#434f54">++</font><font color="#000000">)</font>
+ &nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">tune</font><font color="#000000">[</font><font color="#000000">i</font><font color="#000000">]</font> <font color="#434f54">==</font> <font color="#000000">rest</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">beats</font><font color="#000000">[</font><font color="#000000">i</font><font color="#000000">]</font><font color="#434f54">*</font><font color="#000000">tempo</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">else</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">tone</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#434f54">,</font> <font color="#000000">tune</font><font color="#000000">[</font><font color="#000000">i</font><font color="#000000">]</font><font color="#434f54">,</font> <font color="#000000">beats</font><font color="#000000">[</font><font color="#000000">i</font><font color="#000000">]</font><font color="#434f54">*</font><font color="#000000">tempo</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">beats</font><font color="#000000">[</font><font color="#000000">i</font><font color="#000000">]</font><font color="#434f54">*</font><font color="#000000">tempo</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">tempo</font> <font color="#434f54">&#47;</font> <font color="#000000">10</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#00979c">true</font><font color="#000000">)</font> <font color="#000000">{</font><font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 7
+
+[![Watch the video](https://img.youtube.com/vi/4WrbrDq0Dwo/maxresdefault.jpg)](https://youtu.be/4WrbrDq0Dwo)
+
+## Requirements for Playing A Tune
+
+- Arduino Uno R3
+- 1 X Buzzer
+- 3 x Jumpers
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
