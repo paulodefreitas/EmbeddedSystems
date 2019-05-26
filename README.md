@@ -257,7 +257,7 @@ Traffic light
 ## Simulating Logic Gates
 This project is a simple way of using the Arduino to simulate the behaviour of logic gates.
 
-Code - Example 6
+## Code - Example 6
 
 <pre>
 <font color="#00979c">int</font> <font color="#000000">pinOut</font> <font color="#434f54">=</font> <font color="#000000">7</font><font color="#000000">;</font>
