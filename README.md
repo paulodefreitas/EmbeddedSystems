@@ -298,7 +298,7 @@ This project is a simple way of using the Arduino to simulate the behaviour of l
 
 </pre>
 
-## Video - Example 5
+## Video - Example 6
 
 [![Watch the video](https://img.youtube.com/vi/Xi3fJnjWo5A/maxresdefault.jpg)](https://youtu.be/Xi3fJnjWo5A)
 
