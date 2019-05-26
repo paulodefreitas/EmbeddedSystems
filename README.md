@@ -254,6 +254,67 @@ Traffic light
 - USB cable
 - IDE Arduino 1.8.9
 
+## Simulating Logic Gates
+This project is a simple way of using the Arduino to simulate the behaviour of logic gates.
+
+Code - Example 6
+
+<pre>
+<font color="#00979c">int</font> <font color="#000000">pinOut</font> <font color="#434f54">=</font> <font color="#000000">7</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">pinA</font> <font color="#434f54">=</font> <font color="#000000">8</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">pinB</font> <font color="#434f54">=</font> <font color="#000000">9</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">pinOut</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">pinA</font><font color="#434f54">,</font> <font color="#00979c">INPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">pinB</font><font color="#434f54">,</font> <font color="#00979c">INPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#00979c">boolean</font> <font color="#000000">pinAState</font> <font color="#434f54">=</font> <font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">pinA</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">boolean</font> <font color="#000000">pinBState</font> <font color="#434f54">=</font> <font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">pinB</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">boolean</font> <font color="#000000">pinOutState</font><font color="#000000">;</font>
+ &nbsp;<font color="#95a5a6">&#47;*</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&#47;&#47;or</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;pinOutState = pinAState | pinBState;</font>
+<font color="#95a5a6"></font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&#47;&#47; not</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;pinOutState = !pinAState;</font>
+<font color="#95a5a6"></font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&#47;&#47; XOR</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;pinOutState = pinAState ^ pinBState;</font>
+<font color="#95a5a6"></font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&#47;&#47;NAND</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;pinOutState = !(pinAState &amp; pinBState);</font>
+<font color="#95a5a6"></font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&#47;&#47;NOR</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;pinOutState = !(pinAState | pinBState);</font>
+<font color="#95a5a6"> &nbsp;*&#47;</font>
+ &nbsp;<font color="#434f54">&#47;&#47; and</font>
+ &nbsp;<font color="#000000">pinOutState</font> <font color="#434f54">=</font> <font color="#000000">pinAState</font> <font color="#434f54">&amp;</font> <font color="#000000">pinBState</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">pinOut</font><font color="#434f54">,</font> <font color="#000000">pinOutState</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 5
+
+[![Watch the video](https://img.youtube.com/vi/Xi3fJnjWo5A/maxresdefault.jpg)](https://youtu.be/Xi3fJnjWo5A)
+
+## Requirements for simulating logic gates
+
+- Arduino Uno R3
+- USB cable
+- Breadboard
+- 1 x LEDs Yellow
+- 2 x LED Red
+- 3 x 330 Ohm Resistors
+- 2 x 10 KOhm Resistors
+- 2 x Pushbuttons
+- IDE Arduino 1.8.9
+- 10 Jumpers
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
