@@ -470,6 +470,233 @@ In this project, you make a circuit that you can use to play around with Morse C
 - 1 X Breadboard
 - 1 X USB cable
 
+## Morse Code - Encoder
+Morse Code - Encoder
+
+## Code - Example 9
+
+<pre>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">buzzerPin</font> <font color="#434f54">=</font> <font color="#000000">9</font><font color="#000000">;</font>
+<font color="#434f54">&#47;&#47; tone frequency C</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">tonefreq</font> <font color="#434f54">=</font> <font color="#000000">523</font><font color="#000000">;</font>
+
+<font color="#434f54">&#47;&#47; constants for tone and rest durations</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">dotlength</font> <font color="#434f54">=</font> <font color="#000000">100</font><font color="#000000">;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">dashlength</font> <font color="#434f54">=</font> <font color="#000000">dotlength</font> <font color="#434f54">*</font> <font color="#000000">3</font><font color="#000000">;</font>
+<font color="#434f54">&#47;&#47; inter-element gap - between each dot or dash of a letter</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">inter</font> <font color="#434f54">=</font> <font color="#000000">dotlength</font><font color="#000000">;</font>
+<font color="#434f54">&#47;&#47; letter gap is 3 dots - the inter gap is always added - so this is one fewer</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">lgap</font> <font color="#434f54">=</font> <font color="#000000">dotlength</font> <font color="#434f54">*</font> <font color="#000000">2</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; inter-letter gap</font>
+<font color="#434f54">&#47;&#47; word gap is 7 dots - with letter and inter gap already counted, this is -1</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">wgap</font> <font color="#434f54">=</font> <font color="#000000">dotlength</font> <font color="#434f54">*</font> <font color="#000000">4</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;inter-word gap</font>
+
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#00979c">char</font> <font color="#000000">thischar</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">available</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font>
+ &nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47; read a single character</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">thischar</font> <font color="#434f54">=</font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">read</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">thischar</font> <font color="#434f54">&gt;=</font> <font color="#00979c">&#39;a&#39;</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">thischar</font> <font color="#434f54">&lt;=</font> <font color="#00979c">&#39;z&#39;</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47; convert to upper case</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">thischar</font> <font color="#434f54">=</font> <font color="#000000">thischar</font> <font color="#434f54">-</font> <font color="#000000">32</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47; swap for a space if not in A-Z</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">thischar</font> <font color="#434f54">&lt;</font> <font color="#000000">65</font> <font color="#434f54">||</font> <font color="#000000">thischar</font> <font color="#434f54">&gt;</font> <font color="#000000">90</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">thischar</font> <font color="#434f54">=</font> <font color="#00979c">&#39; &#39;</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">soundLetter</font><font color="#000000">(</font><font color="#000000">thischar</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">lgap</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47; play a dot</font>
+ &nbsp;<font color="#d35400">tone</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#434f54">,</font> <font color="#000000">tonefreq</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">dotlength</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">noTone</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">inter</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47; play a dash</font>
+ &nbsp;<font color="#d35400">tone</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#434f54">,</font> <font color="#000000">tonefreq</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">dashlength</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">noTone</font><font color="#000000">(</font><font color="#000000">buzzerPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">inter</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">soundLetter</font><font color="#000000">(</font><font color="#00979c">char</font> <font color="#000000">letter</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47; letters are in order of frequency</font>
+ &nbsp;<font color="#5e6d03">switch</font> <font color="#000000">(</font><font color="#000000">letter</font><font color="#000000">)</font>
+ &nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;E&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;T&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;A&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;O&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;I&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;N&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;S&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;H&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;R&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;D&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;L&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;C&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;U&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;M&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;W&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;F&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;G&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;Y&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;P&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;B&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;V&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;K&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;J&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;X&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;Q&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39;Z&#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dash</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dot</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">case</font> <font color="#00979c">&#39; &#39;</font><font color="#434f54">:</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">wgap</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">return</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 9
+
+[![Watch the video](https://img.youtube.com/vi/FHYAkZ3gY0g/maxresdefault.jpg)](https://youtu.be/FHYAkZ3gY0g)
+
+## Requirements for Morse Code Encoder
+
+- Arduino Uno R3
+- IDE Arduino 1.8.9
+- 1 X Buzzer
+- 4 x Jumpers
+- 1 X Breadboard
+- 1 X USB cable
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
