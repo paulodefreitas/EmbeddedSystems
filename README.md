@@ -696,7 +696,6 @@ Morse Code - Encoder
 - 4 x Jumpers
 - 1 X Breadboard
 - 1 X USB cable
-- Natalya
 
 ## References
 
