@@ -723,6 +723,8 @@ Brightness control
 
 ## Video - Example 10
 
+[![Watch the video](https://img.youtube.com/vi/XoKmqiFpmNY/maxresdefault.jpg)](https://youtu.be/XoKmqiFpmNY)
+
 ## Requirements for brightness control
 
 - Arduino Uno R3
