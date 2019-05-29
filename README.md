@@ -701,4 +701,6 @@ Morse Code - Encoder
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
 
-[2] MultiWingSpan, http://www.multiwingspan.co.uk/, May 23, 2019
+[2] MultiWingSpan, http://www.multiwingspan.co.uk/arduino, May 23, 2019
+
+[3] Potenciômetro, Prof. Cláudio Oliveira and Prof. Humberto Zanetti, Fatec Jundiaí, http://www.fatecjd.edu.br/fatecino/arq_projetos/04-Projeto-2-Potenciometro.pdf, May 29, 2019
