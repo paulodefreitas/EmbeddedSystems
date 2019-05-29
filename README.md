@@ -697,10 +697,45 @@ Morse Code - Encoder
 - 1 X Breadboard
 - 1 X USB cable
 
+## Brightness control
+Brightness control
+
+## Code - Example 10
+
+<pre>
+<font color="#434f54">&#47;&#47;Controls the brightness of an LED at the frequency induced by the potentiometer.</font>
+<font color="#00979c">int</font> <font color="#000000">pot</font> <font color="#434f54">=</font> <font color="#000000">1</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">led</font> <font color="#434f54">=</font> <font color="#000000">9</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">valor</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">led</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">valor</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">pot</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">valor</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">valor</font> <font color="#434f54">&gt;</font> <font color="#000000">0</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">led</font><font color="#434f54">,</font> <font color="#000000">(</font><font color="#000000">valor</font> <font color="#434f54">&#47;</font> <font color="#000000">4</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 10
+
+## Requirements for brightness control
+
+- Arduino Uno R3
+- IDE Arduino 1.8.9
+- 1 X Potentiometer 10 KOhms
+- 5 x Jumpers
+- 1 X Breadboard
+- 1 X USB cable
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
 
-[2] MultiWingSpan, http://www.multiwingspan.co.uk/arduino, May 23, 2019
+[2] MultiWingSpan, http://www.multiwingspan.co.uk/arduino.php, May 23, 2019
 
 [3] Potenciômetro, Prof. Cláudio Oliveira and Prof. Humberto Zanetti, Fatec Jundiaí, http://www.fatecjd.edu.br/fatecino/arq_projetos/04-Projeto-2-Potenciometro.pdf, May 29, 2019
