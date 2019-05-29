@@ -730,6 +730,7 @@ Brightness control
 - Arduino Uno R3
 - IDE Arduino 1.8.9
 - 1 X Potentiometer 10 KOhms
+- 1 X Resistor 330 ohms
 - 5 x Jumpers
 - 1 X Breadboard
 - 1 X USB cable
