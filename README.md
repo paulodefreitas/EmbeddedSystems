@@ -735,10 +735,66 @@ Brightness control
 - 1 X Breadboard
 - 1 X USB cable
 
+## Ultrasonic sensor HC-SR04 V1
+Ultrasonic sensor HC-SR04 V1
+
+## Code - Example 11
+
+<pre>
+<font color="#00979c">int</font> <font color="#000000">echoPino</font> <font color="#434f54">=</font> <font color="#000000">12</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Pin 12 receives the echo pulse</font>
+<font color="#00979c">int</font> <font color="#000000">trigPino</font> <font color="#434f54">=</font> <font color="#000000">13</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Pin 13 sends the pulse to generate echo</font>
+<font color="#00979c">long</font> <font color="#000000">duration</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">long</font> <font color="#000000">distance</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Start the serial port</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">echoPino</font><font color="#434f54">,</font> <font color="#00979c">INPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Defines pin 12 as input (receive)</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">trigPino</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Define pin 13 as output (send)</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47; Trigger pin with a low pulse LOW (off)</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">trigPino</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#434f54">&#47;&#47; Delay (delay) of 10 microseconds</font>
+ &nbsp;<font color="#d35400">delayMicroseconds</font><font color="#000000">(</font><font color="#000000">10</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47; Trigger pin with pulse HIGH (on)</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">trigPino</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47; Delay (delay) of 10 microseconds</font>
+ &nbsp;<font color="#d35400">delayMicroseconds</font><font color="#000000">(</font><font color="#000000">10</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47; Trigger pin with a low pulse LOW again</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">trigPino</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47; The pulseInt function checks the time the ECHO pin was HIGH Calculating in this way the duration of the signal traffic</font>
+ &nbsp;<font color="#000000">duration</font> <font color="#434f54">=</font> <font color="#d35400">pulseIn</font><font color="#000000">(</font><font color="#000000">echoPino</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47; Calculation based on: distance = duration &#47; 58.</font>
+ &nbsp;<font color="#000000">distance</font> <font color="#434f54">=</font> <font color="#000000">duration</font> <font color="#434f54">&#47;</font> <font color="#000000">58</font><font color="#000000">;</font>
+
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Distance in centimeters: &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">distance</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 11
+
+[![Watch the video](https://img.youtube.com/vi/sSqe-sNCqbk/maxresdefault.jpg)](https://youtu.be/sSqe-sNCqbk)
+![alt text](https://github.com/paulodefreitas/EmbeddedSystems/blob/master/media/HC-SR04_ultrasonic_sensor.png)
+
+## Requirements for Ultrasonic sensor HC-SR04 Version 1
+
+- Arduino Uno R3
+- IDE Arduino 1.8.9
+- Ultrasonic sensor HC-SR04
+- 8 x Jumpers
+1 X Breadboard
+1 X USB cable
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
 
-[2] MultiWingSpan, http://www.multiwingspan.co.uk/arduino.php, May 23, 2019
+[2] MultiWingSpan - Arduino, http://www.multiwingspan.co.uk/arduino.php, May 23, 2019
 
-[3] Potenciômetro, Prof. Cláudio Oliveira and Prof. Humberto Zanetti, Fatec Jundiaí, http://www.fatecjd.edu.br/fatecino/arq_projetos/04-Projeto-2-Potenciometro.pdf, May 29, 2019
+[3] FATECINO - Projetos, Prof. Cláudio Oliveira and Prof. Humberto Zanetti, Fatec Jundiaí, http://www.fatecjd.edu.br/fatecino/projetos.php, May 29, 2019
