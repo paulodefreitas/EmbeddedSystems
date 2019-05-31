@@ -788,8 +788,68 @@ Ultrasonic sensor HC-SR04 V1
 - IDE Arduino 1.8.9
 - Ultrasonic sensor HC-SR04
 - 8 x Jumpers
-1 X Breadboard
-1 X USB cable
+- 1 X Breadboard
+- 1 X USB cable
+
+## Display LCD 16x2
+Display LCD 16x2
+
+## Code - Example 12
+
+<pre>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">LiquidCrystal</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+
+<font color="#434f54">&#47;&#47;Defines the ones that are related to display</font>
+<b><font color="#d35400">LiquidCrystal</font></b> <font color="#000000">lcd</font><font color="#000000">(</font><font color="#000000">12</font><font color="#434f54">,</font> <font color="#000000">11</font><font color="#434f54">,</font> <font color="#000000">5</font><font color="#434f54">,</font> <font color="#000000">4</font><font color="#434f54">,</font> <font color="#000000">3</font><font color="#434f54">,</font> <font color="#000000">2</font><font color="#000000">)</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Sets the number of columns and LCD lines</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">16</font><font color="#434f54">,</font> <font color="#000000">2</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Clean the screen</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">clear</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Position the cursor in column 3, line 0;</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">setCursor</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#000000">0</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Send text in quotes to LCD</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Natalya&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">setCursor</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; I love you&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">5000</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#434f54">&#47;&#47;Scroll left</font>
+ &nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">pos</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">pos</font> <font color="#434f54">&lt;</font> <font color="#000000">3</font><font color="#000000">;</font> <font color="#000000">pos</font><font color="#434f54">++</font><font color="#000000">)</font>
+ &nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">scrollDisplayLeft</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">300</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+
+ &nbsp;<font color="#434f54">&#47;&#47;Scroll right</font>
+ &nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">pos</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">pos</font> <font color="#434f54">&lt;</font> <font color="#000000">5</font><font color="#000000">;</font> <font color="#000000">pos</font><font color="#434f54">++</font><font color="#000000">)</font>
+ &nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">scrollDisplayRight</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">300</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 12
+
+[![Watch the video](https://img.youtube.com/vi/NfoxHbsjE90/maxresdefault.jpg)](https://youtu.be/NfoxHbsjE90)
+
+## Requirements for display LCD 16x2
+
+- Arduino Uno R3
+- IDE Arduino 1.8.9
+- Potentiometer 10 KOhms
+- Display LCD 16x2
+- Jumpers
+- Breadboard
+- USB cable
 
 ## References
 
