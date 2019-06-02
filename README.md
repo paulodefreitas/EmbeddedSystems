@@ -946,7 +946,7 @@ NTC(Negative Temperature Coefficient) 5MM 10K Thermistor
 
 ## Video - Example 14
 
-[![Watch the video](https://img.youtube.com/vi/wiH1oyZ40wE/maxresdefault.jpg)](https://youtu.be/wiH1oyZ40wE)
+[![Watch the video](https://img.youtube.com/vi/ZSkYLrklfog/maxresdefault.jpg)](https://youtu.be/wiH1oyZ40wE)
 
 ![alt text](https://github.com/paulodefreitas/EmbeddedSystems/blob/master/media/ntc.png)
 
