@@ -915,6 +915,50 @@ HC-SRO4 with LCD 16X2
 - Breadboard
 - USB cable
 
+## NTC 5MM 10K Thermistor
+NTC(Negative Temperature Coefficient) 5MM 10K Thermistor
+
+## Code - Example 14
+
+<pre>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><font color="#000000">math</font><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">TERMISTOR</font> <font color="#434f54">=</font> <font color="#000000">A0</font><font color="#000000">;</font>
+<font color="#00979c">double</font> <font color="#000000">obterTemperatura</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">termistor</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">tempK</font><font color="#434f54">,</font> <font color="#000000">tempC</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">tempK</font> <font color="#434f54">=</font> <font color="#d35400">log</font><font color="#000000">(</font><font color="#000000">10000.0</font> <font color="#434f54">*</font> <font color="#000000">(</font><font color="#000000">1024.0</font> <font color="#434f54">&#47;</font> <font color="#000000">termistor</font> <font color="#434f54">-</font> <font color="#000000">1</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">tempK</font> <font color="#434f54">=</font> <font color="#000000">1</font> <font color="#434f54">&#47;</font> <font color="#000000">(</font><font color="#000000">0.001129148</font> <font color="#434f54">+</font> <font color="#000000">(</font><font color="#000000">0.000234125</font> <font color="#434f54">+</font> <font color="#000000">(</font><font color="#000000">0.0000000876741</font> <font color="#434f54">*</font> <font color="#000000">tempK</font> <font color="#434f54">*</font> <font color="#000000">tempK</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#434f54">*</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">tempK</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">tempC</font> <font color="#434f54">=</font> <font color="#000000">tempK</font> <font color="#434f54">-</font> <font color="#000000">273.15</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">return</font> <font color="#000000">tempC</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">termistor</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">TERMISTOR</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">obterTemperatura</font><font color="#000000">(</font><font color="#000000">termistor</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#00979c">char</font><font color="#000000">(</font><font color="#000000">176</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;C&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 14
+
+[![Watch the video](https://img.youtube.com/vi/wiH1oyZ40wE/maxresdefault.jpg)](https://youtu.be/wiH1oyZ40wE)
+
+![alt text](https://github.com/paulodefreitas/EmbeddedSystems/blob/master/media/ntc.png)
+
+## Requirements for NTC 5MM 10K Thermistor
+
+- Arduino Uno R3
+- 1 X Resistor 10 KOhms
+- 3 x Jumpers
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
