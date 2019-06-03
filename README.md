@@ -817,7 +817,7 @@ Display LCD 16x2
  &nbsp;<font color="#434f54">&#47;&#47;Send text in quotes to LCD</font>
  &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Natalya&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
  &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">setCursor</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#000000">1</font><font color="#000000">)</font><font color="#000000">;</font>
- &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; I love you&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; Eu te amo&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
  &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">5000</font><font color="#000000">)</font><font color="#000000">;</font>
 
  &nbsp;<font color="#434f54">&#47;&#47;Scroll left</font>
@@ -835,11 +835,12 @@ Display LCD 16x2
  &nbsp;<font color="#000000">}</font>
 <font color="#000000">}</font>
 
+
 </pre>
 
 ## Video - Example 12
 
-[![Watch the video](https://img.youtube.com/vi/NfoxHbsjE90/maxresdefault.jpg)](https://youtu.be/NfoxHbsjE90)
+[![Watch the video](https://img.youtube.com/vi/ZIY2EkAjMqw/maxresdefault.jpg)](https://youtu.be/ZIY2EkAjMqw)
 
 ## Requirements for display LCD 16x2
 
