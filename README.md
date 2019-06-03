@@ -970,3 +970,5 @@ NTC(Negative Temperature Coefficient) 5MM 10K Thermistor
 
 
 [4] HC-SRO4 (Distance Measurer) with LCD 16X2, PROJECT HUB, https://create.arduino.cc/projecthub/Techinc1510/hc-sro4-distance-measurer-with-lcd-1602-f94579, June 1, 2019
+
+[5] Controlando um LCD 16×2 com Arduino, filipeflop, Adilson Thomsen, https://www.filipeflop.com/blog/controlando-um-lcd-16x2-com-arduino/, June 3, 2019 
