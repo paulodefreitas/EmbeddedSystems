@@ -1010,7 +1010,7 @@ NTC(Negative Temperature Coefficient) 5MM 10K Thermistor with display LCD 16X2
 
 </pre>
 
-## Video - Example 14
+## Video - Example 15
 
 [![Watch the video](https://img.youtube.com/vi/RNq5wGHVyjA/maxresdefault.jpg)](https://youtu.be/RNq5wGHVyjA)
 

@@ -1,5 +1,3 @@
-// Exemplo 4 - Sensor de luz LDR
-// Apostila Eletrogate - KIT BEGINNING
 #define AnalogLDR A0 // define pino analógico A0
 #define Limiar 1.5 // define constante igual a 1.5
 #define ledPin 13 // define pino digital D13
