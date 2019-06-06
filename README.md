@@ -1075,6 +1075,68 @@ LDR(Light Dependent Resistor)
 - USB cable
 - IDE Arduino 1.8.9
 
+## Photo resistor sensor with LCD display
+Photo resistor sensor with LCD display
+
+## Code - Example 17
+
+<pre>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">LiquidCrystal</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<b><font color="#d35400">LiquidCrystal</font></b> <font color="#000000">lcd</font><font color="#000000">(</font><font color="#000000">12</font><font color="#434f54">,</font> <font color="#000000">11</font><font color="#434f54">,</font> <font color="#000000">5</font><font color="#434f54">,</font> <font color="#000000">4</font><font color="#434f54">,</font> <font color="#000000">3</font><font color="#434f54">,</font> <font color="#000000">2</font><font color="#000000">)</font><font color="#000000">;</font>
+
+<font color="#5e6d03">#define</font> <font color="#000000">AnalogLDR</font> <font color="#000000">A0</font> <font color="#434f54">&#47;&#47; define pino analógico A0</font>
+<font color="#5e6d03">#define</font> <font color="#000000">Limiar</font> <font color="#000000">1.5</font> <font color="#434f54">&#47;&#47; define constante igual a 1.5</font>
+<font color="#5e6d03">#define</font> <font color="#000000">ledPin</font> <font color="#000000">13</font> <font color="#434f54">&#47;&#47; define pino digital D13</font>
+
+<font color="#00979c">int</font> <font color="#000000">Leitura</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; variavel inteiro igual a zero</font>
+<font color="#00979c">float</font> <font color="#000000">VoltageLDR</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; variavel numero fracionario</font>
+<font color="#00979c">float</font> <font color="#000000">ResLDR</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; variavel numero fracionario</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Define o número de colunas e linhas do LCD</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">16</font><font color="#434f54">,</font> <font color="#000000">2</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">ledPin</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; configura D13 como saída digital</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; monitor serial - velocidade 9600 Bps</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; atraso de 100 milisegundos</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Limpa a tela</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">clear</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">setCursor</font><font color="#000000">(</font><font color="#000000">0</font><font color="#434f54">,</font> <font color="#000000">0</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Sets the location at which subsequent text written to the LCD will be displayed</font>
+ &nbsp;<font color="#000000">Leitura</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">AnalogLDR</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; leitura da tensão no pino analogico A0</font>
+ &nbsp;<font color="#000000">VoltageLDR</font> <font color="#434f54">=</font> <font color="#000000">Leitura</font> <font color="#434f54">*</font> <font color="#000000">(</font><font color="#000000">5.0</font> <font color="#434f54">&#47;</font> <font color="#000000">1024</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; calculo da tensão no LDR</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;LDR = &#34;</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; imprime no monitor serial</font>
+ &nbsp;<font color="#000000">lcd</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">VoltageLDR</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; imprime a tensão do LDR</font>
+
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">VoltageLDR</font> <font color="#434f54">&gt;</font> <font color="#000000">Limiar</font><font color="#000000">)</font> <font color="#434f54">&#47;&#47; se a tensão LDR maior do que limiar</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">ledPin</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; liga LED com 5V</font>
+ &nbsp;<font color="#5e6d03">else</font> <font color="#434f54">&#47;&#47; senão a tensão LDR &lt; limiar</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">ledPin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; desliga LED com 0V</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 17
+
+[![Watch the video](https://img.youtube.com/vi/P18Ono-94wc/maxresdefault.jpg)](https://youtu.be/P18Ono-94wc)
+
+## Requirements for photo resistor sensor with LCD display
+- Arduino Uno R3
+- 1 X Resistor 10 KOhms
+- 1 X Resistor 330 Ohms
+- 1 X LDR(Light Dependent Resistor)
+- Potentiometer 10 KOhms
+- Display LCD 16x2
+- 1 X LED
+- Jumpers
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
