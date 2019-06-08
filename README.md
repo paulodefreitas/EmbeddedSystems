@@ -1178,6 +1178,55 @@ Reflective Optical Sensor(TCRT5000)
 - USB cable
 - IDE Arduino 1.8.9
 
+## Turn on and off LED by LDR
+This example demonstrates the use of a LDR as a switch. Each time you cover the photocell, the LED (or whatever) is turned on (if it's off) or off (if it's on).
+
+## Code - Example 19
+
+<pre>
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">lamp</font> <font color="#434f54">=</font> <font color="#000000">7</font><font color="#000000">;</font>
+<font color="#00979c">boolean</font> <font color="#000000">x</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">lamp</font> <font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">c</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">A0</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font> <font color="#000000">c</font> <font color="#434f54">&lt;</font> <font color="#000000">300</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">x</font> <font color="#434f54">==</font> <font color="#00979c">true</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">7</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">x</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font> <font color="#000000">c</font> <font color="#434f54">&lt;</font> <font color="#000000">300</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">x</font> <font color="#434f54">==</font> <font color="#00979c">false</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">x</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">7</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 19
+
+[![Watch the video](https://img.youtube.com/vi/9DBhpI0xoE0/maxresdefault.jpg)](https://youtu.be/9DBhpI0xoE0)
+
+## Requirements for turn on and off LED by LDR
+
+- Arduino Uno R3
+- 1 X Resistor 10 KOhms
+- 1 X Resistor 330 Ohms
+- 1 X LDR(Light Dependent Resistor)
+- 1 X LED
+- Jumpers
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
