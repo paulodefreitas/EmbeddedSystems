@@ -1211,12 +1211,9 @@ This example demonstrates the use of a LDR as a switch. Each time you cover the 
 
 </pre>
 
-## Video - Example 1
-
-9
+## Video - Example 19
 
 [![Watch the video](https://img.youtube.com/vi/9DBhpI0xoE0/maxresdefault.jpg)](https://youtu.be/9DBhpI0xoE0)
-
 
 ## Requirements for turn on and off LED by LDR
 
