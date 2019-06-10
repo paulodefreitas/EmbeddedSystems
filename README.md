@@ -1227,6 +1227,43 @@ This example demonstrates the use of a LDR as a switch. Each time you cover the 
 - USB cable
 - IDE Arduino 1.8.9
 
+## Servo motor 1
+Knob: Control the position of a servo with a potentiometer.
+
+## Code - Example 20
+
+<pre>
+<font color="#5e6d03">#include</font> <font color="#005c5f">&#34;Servo.h&#34;</font>
+<b><font color="#d35400">Servo</font></b> <font color="#000000">servo</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">Pinpotenciometro</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">PinservoMotor</font> <font color="#434f54">=</font> <font color="#000000">6</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">valorPot</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">valorMotor</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">servo</font><font color="#434f54">.</font><font color="#d35400">attach</font><font color="#000000">(</font><font color="#000000">PinservoMotor</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">valorPot</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">Pinpotenciometro</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">valorMotor</font> <font color="#434f54">=</font> <font color="#d35400">map</font><font color="#000000">(</font><font color="#000000">valorPot</font><font color="#434f54">,</font> <font color="#000000">0</font><font color="#434f54">,</font> <font color="#000000">1023</font><font color="#434f54">,</font> <font color="#000000">0</font><font color="#434f54">,</font> <font color="#000000">180</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">servo</font><font color="#434f54">.</font><font color="#d35400">write</font> <font color="#000000">(</font><font color="#000000">valorMotor</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">valorMotor</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">20</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+
+## Video - Example 20
+
+[![Watch the video](https://img.youtube.com/vi/23l2lhlxu3k/maxresdefault.jpg)](https://youtu.be/23l2lhlxu3k)
+
+## Hardware Required
+
+- Arduino or Genuino Board
+- Servo Motor
+- 10k ohm potentiometer
+- hook-up wires
+
 ## References
 
 [1] 01 – PISCA LED, uel, http://www.uel.br/pessoal/ernesto/arduino/01_pisca_led.pdf, May 21, 2019
