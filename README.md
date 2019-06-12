@@ -840,7 +840,7 @@ Display LCD 16x2
 
 ## Video - Example 12
 
-[![Watch the video](https://img.youtube.com/vi/NfoxHbsjE90/maxresdefault.jpg)](https://youtu.be/NfoxHbsjE90)
+[![Watch the video](https://img.youtube.com/vi/Hfzy5Y4jvpI/maxresdefault.jpg)](https://youtu.be/Hfzy5Y4jvpI)
 
 ## Requirements for display LCD 16x2
 
