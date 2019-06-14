@@ -1394,13 +1394,13 @@ INPUT_PULLUP
 
 ## Hardware Required
 
-Arduino Uno R3
-1 x Resistor 330 ohms
-1 X LED
-Jumpers
-Breadboard
-USB cable
-IDE Arduino 1.8.9
+- Arduino Uno R3
+- 1 x Resistor 330 ohms
+- 1 X LED
+- Jumpers
+- Breadboard
+- USB cable
+- IDE Arduino 1.8.9
 
 ## References
 
